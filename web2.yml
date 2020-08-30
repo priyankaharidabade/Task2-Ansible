@@ -1,0 +1,17 @@
+- hosts: all
+  become: yes
+  become_user: root
+  tasks: 
+   - name: Download httpd
+     package: 
+             name: "httpd"
+             state: present
+   - name: Copy file 
+     copy:
+             dest: "/var/www/html/"
+             src: "/root/Task2/index.html"
+   - name: Service
+     service: 
+            name: "httpd"
+            state: started
+            enabled: yes     
